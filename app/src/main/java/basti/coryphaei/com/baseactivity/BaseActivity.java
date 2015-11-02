@@ -70,6 +70,7 @@ public class BaseActivity extends Activity implements NetworkCallback {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mProgressDialogUtils.dismiss();
         mNetworkUtils.cancelRequest();
     }
 }
