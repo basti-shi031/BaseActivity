@@ -1,15 +1,10 @@
 package basti.coryphaei.com.baseactivity;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.os.Bundle;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.alibaba.fastjson.JSONObject;
-import com.android.volley.RequestQueue;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -21,7 +16,7 @@ public class BaseActivity extends Activity implements NetworkCallback {
 
     private DialogUtils mProgressDialogUtils;
     private ToastUtils mToast;
-    private NetworkUtils mNetworkUtils;;
+    private NetworkUtils mNetworkUtils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,15 +52,28 @@ public class BaseActivity extends Activity implements NetworkCallback {
         mProgressDialogUtils.showProgressDialog(show);
     }
 
-    public void gettNetwork(int tag,String url){
+    //get请求
+    public void getNetwork(int tag,String url){
+        getNetwork(tag, url, true);
+    }
+
+    public void getNetwork(int tag,String url,boolean showProgressbar){
+        if (showProgressbar)
         mProgressDialogUtils.showProgressDialog(true,getResources().getString(R.string.loading));
+
         mNetworkUtils.LoadData(tag, url, null, NetworkUtils.RequestMethod.GET);
     }
 
+    //post请求
     public void postNetwork(int tag,String url,Map<String,String> params){
+        postNetwork(tag,url,params,true);
+    }
+    public void postNetwork(int tag,String url,Map<String,String> params,boolean showProgressbar){
+        if (showProgressbar)
         mProgressDialogUtils.showProgressDialog(true,getResources().getString(R.string.loading));
         mNetworkUtils.LoadData(tag, url, params, NetworkUtils.RequestMethod.POST);
     }
+
 
     @Override
     protected void onDestroy() {

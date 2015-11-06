@@ -5,4 +5,7 @@
     <string name="action_settings">Settings</string>
     <string name="loading">正在访问数据...</string>
     <string name="internet_error">当前网络不给力</string>
+    <string name="no_sdcard">未找到SD卡，无法保存照片</string>
+    <string name="upload_success">上传成功</string>
+    <string name="upload_failure">上传失败</string>
 </resources>

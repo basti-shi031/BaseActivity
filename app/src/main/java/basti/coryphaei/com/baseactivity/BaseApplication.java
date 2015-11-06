@@ -11,6 +11,8 @@ import com.android.volley.toolbox.Volley;
 public class BaseApplication extends Application {
 
     protected RequestQueue mQueue;
+    //调试模式，线下版本置为true，上线后改成false
+    protected boolean DEBUG_MODE = true;
 
     @Override
     public void onCreate()

@@ -15,4 +15,10 @@
         android:text="请求数据"
         android:id="@+id/button"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="上传头像"
+        android:id="@+id/upload"/>
+
 </LinearLayout>

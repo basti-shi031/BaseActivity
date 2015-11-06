@@ -28,6 +28,7 @@ public class DialogUtils {
     public void showProgressDialog(boolean show){
         showProgressDialog(show,"");
     }
+
     public void dismiss(){
         mProgressDialog.dismiss();
     }

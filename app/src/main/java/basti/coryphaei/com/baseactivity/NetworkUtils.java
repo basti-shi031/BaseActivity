@@ -2,7 +2,6 @@ package basti.coryphaei.com.baseactivity;
 
 import android.app.Activity;
 import android.content.Context;
-import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -46,10 +45,10 @@ public class NetworkUtils {
             default:break;
         }
 
-        StringRequest request = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
+        StringRequest request = new StringRequest(Method,url, new Response.Listener<String>() {
             @Override
             public void onResponse(String s) {
-                Log.i("response",s);
+                LogUtils.Log(mApp.DEBUG_MODE, Tag + "", s);
                 JSONObject jsonObject = JSON.parseObject(s);
                 mCallback.parseResults(jsonObject,Tag);
             }

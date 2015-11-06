@@ -10,12 +10,17 @@ android {
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    dexOptions {
+        incremental true
+        jumboMode = true
     }
 }
 
@@ -24,4 +29,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.0'
     compile files('libs/fastjson-1.2.7.jar')
     compile files('libs/volley.1.0.19.jar')
+    compile 'com.loopj.android:android-async-http:1.4.6'
 }
+
