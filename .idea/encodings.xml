@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
-    <file url="file://$PROJECT_DIR$/app/libs/fastjson-1.2.7.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/libs/volley.1.0.19.jar" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/basti/coryphaei/com/baseactivity/BaseActivity.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/basti/coryphaei/com/baseactivity/BaseApplication.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/basti/coryphaei/com/baseactivity/Code.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/basti/coryphaei/com/baseactivity/FileUtils.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/basti/coryphaei/com/baseactivity/ImageSize.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/basti/coryphaei/com/baseactivity/MainActivity.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/basti/coryphaei/com/baseactivity/NetworkCallback.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/basti/coryphaei/com/baseactivity/NetworkUtils.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/basti/coryphaei/com/baseactivity/SystemUtils.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/basti/coryphaei/com/baseactivity/UploadActivity.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/app/src/main/java/basti/coryphaei/com/baseactivity/UploadFileUtils.java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

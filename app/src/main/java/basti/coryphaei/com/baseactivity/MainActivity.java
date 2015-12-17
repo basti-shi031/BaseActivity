@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bzt.jsonhelperlib.LoadBean;
+import com.bzt.jsonhelperlib.LoadListener;
+import com.bzt.jsonhelperlib.SaveListener;
 import com.loopj.android.http.RequestParams;
 
 import java.io.FileNotFoundException;
@@ -14,7 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class MainActivity extends UploadActivity implements UploadActivity.UpLoadFile {
+public class MainActivity extends UploadActivity implements UploadActivity.UpLoadFile,LoadListener,SaveListener{
 
 
     private static final String url1= "https://slack.com/api/api.test";
@@ -25,6 +28,8 @@ public class MainActivity extends UploadActivity implements UploadActivity.UpLoa
     private Map<String,String> map1;
     private Map<String,String> map2;
     private RequestParams mUploadParams;
+    private String fileName = "/MainActivity.txt";
+    private String path = "";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +37,8 @@ public class MainActivity extends UploadActivity implements UploadActivity.UpLoa
 
         initView();
         initDates();
+
+        path =  getApplicationContext().getFilesDir().getAbsolutePath()+"/jsoncache";
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,10 +48,11 @@ public class MainActivity extends UploadActivity implements UploadActivity.UpLoa
                 map1.put("password", "123456");
                 map1.put("server", "56846a8a2fee49d14901d39cc48b8b2a");*/
                 //postNetwork(1, url1, map1);
+                loadJson(path,fileName,1);
                 getNetwork(1, url1);
                 map2.put("campusId", "1");
                 map2.put("server", "56846a8a2fee49d14901d39cc48b8b2a");
-                postNetwork(2, url2, map2);
+                postNetwork(2, url2, map2 );
             }
         });
 
@@ -76,6 +84,7 @@ public class MainActivity extends UploadActivity implements UploadActivity.UpLoa
         super.parseResults(jsonObject, tag);
         switch (tag){
             case 1:
+                saveJson(jsonObject.toString(),path,fileName,1);
                 tv1.setText(jsonObject.toString());
                 break;
             case 2:
@@ -102,5 +111,21 @@ public class MainActivity extends UploadActivity implements UploadActivity.UpLoa
             e.printStackTrace();
         }
         uploadBitmap(mUploadParams,url3);
+    }
+
+    @Override
+    public void finishSave(int saveTag, boolean success) {
+        super.finishSave(saveTag, success);
+        Log.i("TAG","SAVE");
+    }
+
+    @Override
+    public void finishLoad(int loadTag, LoadBean loadBean) {
+        super.finishLoad(loadTag, loadBean);
+        if(loadTag == 1){
+            if (loadBean.isSuccess()){
+                tv1.setText(loadBean.getResult());
+            }
+        }
     }
 }

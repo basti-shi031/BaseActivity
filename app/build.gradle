@@ -1,8 +1,8 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
 
     defaultConfig {
         applicationId "basti.coryphaei.com.baseactivity"
@@ -22,13 +22,14 @@ android {
         incremental true
         jumboMode = true
     }
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:22.2.0'
-    compile files('libs/fastjson-1.2.7.jar')
+    compile 'com.android.support:appcompat-v7:23.1.1'
     compile files('libs/volley.1.0.19.jar')
     compile 'com.loopj.android:android-async-http:1.4.6'
+    compile project(':jsonhelperlib')
 }
 

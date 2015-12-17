@@ -4,6 +4,11 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import com.alibaba.fastjson.JSONObject;
+import com.bzt.jsonhelperlib.DeleteAllListener;
+import com.bzt.jsonhelperlib.DeleteListener;
+import com.bzt.jsonhelperlib.LoadBean;
+import com.bzt.jsonhelperlib.LoadListener;
+import com.bzt.jsonhelperlib.SaveListener;
 
 import java.util.Map;
 
@@ -12,11 +17,12 @@ import java.util.Map;
  * 封装了ProgressDialog,Toast,volley的请求类
  * Created by Bowen on 2015-11-02.
  */
-public class BaseActivity extends Activity implements NetworkCallback {
+public class BaseActivity extends Activity implements NetworkCallback, DeleteAllListener, DeleteListener, LoadListener, SaveListener {
 
     private DialogUtils mProgressDialogUtils;
     private ToastUtils mToast;
     private NetworkUtils mNetworkUtils;
+    private CacheUtils mCacheUtils;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +33,7 @@ public class BaseActivity extends Activity implements NetworkCallback {
         mProgressDialogUtils = new DialogUtils(this);
         mToast = new ToastUtils(this);
         mNetworkUtils = new NetworkUtils(this,this);
+        mCacheUtils = new CacheUtils(this,this,this,this);
     }
 
     @Override
@@ -66,19 +73,47 @@ public class BaseActivity extends Activity implements NetworkCallback {
 
     //post请求
     public void postNetwork(int tag,String url,Map<String,String> params){
-        postNetwork(tag,url,params,true);
+        postNetwork(tag, url, params, true, false);
     }
-    public void postNetwork(int tag,String url,Map<String,String> params,boolean showProgressbar){
+    public void postNetwork(int tag,String url,Map<String,String> params,boolean showProgressbar,boolean enableCache){
         if (showProgressbar)
         mProgressDialogUtils.showProgressDialog(true,getResources().getString(R.string.loading));
+
         mNetworkUtils.LoadData(tag, url, params, NetworkUtils.RequestMethod.POST);
     }
 
+    public void loadJson(String path,String filename,int loadTag){
+        mCacheUtils.load(path, filename, loadTag);
+    }
+
+    public void saveJson(String content,String path,final String filename, int saveTag){
+        mCacheUtils.save(content,path,filename,saveTag);
+    }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         mProgressDialogUtils.dismiss();
         mNetworkUtils.cancelRequest();
+    }
+
+    @Override
+    public void finishDeleteAll(int deleteTag) {
+
+    }
+
+    @Override
+    public void finishDelete(int deleteTag, boolean success) {
+
+    }
+
+    @Override
+    public void finishLoad(int loadTag, LoadBean loadBean) {
+
+    }
+
+    @Override
+    public void finishSave(int saveTag, boolean success) {
+
     }
 }
