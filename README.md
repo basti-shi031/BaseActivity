@@ -1,0 +1,2 @@
+# BaseActivity
+对Anctivity的封装，集成了Volley、Toast、progressDialog工具类，简化了网络网络请求代码的复杂度
